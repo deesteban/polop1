@@ -6,16 +6,31 @@
 
 void ejercicio1() {
 
-    for (int i = 20; i > 0; i--) {
-        for (int j = 0; j < 20; j++) {
-            if (pow((j - 10), 2.0) + pow((i - 10), 2.0) == 100) {
+    double radio = 10.0;
+    int porcentaje = 10;
+    printf("\n");
+
+
+    for (int i = 2 * radio; i >= 0; i--) {
+        for (int j = 0; j <= 1.5 * radio; j++) {
+
+            double res = pow((j - radio), 2.0) + pow((i - radio), 2.0);
+            if (res > (pow(radio, 2.0) - porcentaje) && res < (pow(radio, 2.0) + porcentaje)) {
                 printf("* ");
             } else {
                 printf(" ");
             }
 
-            printf("\n");
+            double res2 = pow((j - 2.0 * radio), 2.0) + pow((i - radio), 2.0);
+            if (res2 > (pow(radio, 2.0) - porcentaje) && res2 < (pow(radio, 2.0) + porcentaje)) {
+                printf("* ");
+            } else {
+                printf(" ");
+            }
+
+
         }
+        printf("\n");
     }
 
 
@@ -33,13 +48,14 @@ void ejercicio3() {
 
 int main() {
 
-    int resultado = 0;
+    int resultado = 1;
 
     do {
 
         printf("1.- Ejercicio 1\n2.- Ejercicio 2\n3.- Ejercicio 3\n4.- Salir\n\nIntroduzca una opcion(1-4) ");
 
         //se lee el numero por teclado
+
         scanf("%d", &resultado);
 
         //se controlan los numeros fuera del rango
@@ -54,6 +70,7 @@ int main() {
         if (resultado == 4) {
             //se finaliza el programa
         }
+
 
     } while (resultado != 4);
 
