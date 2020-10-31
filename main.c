@@ -6,6 +6,6 @@ int a;
 int main(int argc, char **argv) {
     global_argv = argv;
     global_argc = argc;
-    printf("Hello, World!\n");
+    printf("hola\n");
     return 0;
 }
