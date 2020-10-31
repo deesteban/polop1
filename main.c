@@ -1,9 +1,23 @@
 // Polo, Salinas, Juan
 #include <stdio.h>
+#include <math.h>
+#include "stdlib.h"
 // Resto de include necesarios
 
 void ejercicio1() {
-    printf("Ej1");
+
+    for (int i = 20; i > 0; i--) {
+        for (int j = 0; j < 20; j++) {
+            if (pow((j - 10), 2.0) + pow((i - 10), 2.0) == 100) {
+                printf("* ");
+            } else {
+                printf(" ");
+            }
+
+            printf("\n");
+        }
+    }
+
 
 }
 
