@@ -3,33 +3,44 @@
 // Resto de include necesarios
 
 void ejercicio1() {
-    // TO-DO
+    printf("Ej1");
+
 }
 
 void ejercicio2() {
-    // TO-DO
+    printf("Ej2");
+
 }
 
 void ejercicio3() {
-    // TO-DO
+    printf("Ej3");
+
 }
 
 int main() {
 
     int resultado = 0;
 
-    printf("1.- Ejercicio 1\n2.- Ejercicio 2\n3.- Ejercicio 3\n4.- Salir\n\nIntroduzca una opcion(1-4) ");
+    do {
 
-    scanf("%d", &resultado);
+        printf("1.- Ejercicio 1\n2.- Ejercicio 2\n3.- Ejercicio 3\n4.- Salir\n\nIntroduzca una opcion(1-4) ");
 
-    printf(resultado);
+        //se lee el numero por teclado
+        scanf("%d", &resultado);
 
-    if (resultado > 4 || resultado < 1) {
-        printf("ERROR: Opcion introducida no valida");
-    }
+        //se controlan los numeros fuera del rango
+        if (resultado > 4 || resultado < 1) {
+            printf("ERROR: Opcion introducida no valida\n\n");
+        }
 
-    ejercicio1(); // Salta al codigo de ejercicio 1 y cuando termina vuelve a este punto
-    ejercicio2(); // Salta al codigo de ejercicio 1 y cuando termina vuelve a este punto
-    ejercicio3(); // Salta al codigo de ejercicio 1 y cuando termina vuelve a este punto
+        //se selecciona el ejercicio correcto
+        if (resultado == 1) ejercicio1();
+        if (resultado == 2) ejercicio2();
+        if (resultado == 3) ejercicio3();
+        if (resultado == 4) {
+            //se finaliza el programa
+        }
+
+    } while (resultado != 4);
 
 }
