@@ -37,7 +37,13 @@ void ejercicio1() {
 }
 
 void ejercicio2() {
-    printf("Ej2");
+
+
+    int numero = 12345;
+    //para saber longitud de un numero int
+    int longitud = floor(1 + log10(abs(numero)));
+
+    printf("%d\n", longitud);
 
 }
 
@@ -48,7 +54,7 @@ void ejercicio3() {
 
 int main() {
 
-    int resultado = 1;
+    int resultado = 0;
 
     do {
 
@@ -62,6 +68,8 @@ int main() {
         if (resultado > 4 || resultado < 1) {
             printf("ERROR: Opcion introducida no valida\n\n");
         }
+
+
 
         //se selecciona el ejercicio correcto
         if (resultado == 1) ejercicio1();
