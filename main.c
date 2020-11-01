@@ -33,6 +33,7 @@ void ejercicio1() {
         printf("\n");
     }
 
+    printf("\n");
 
 }
 
@@ -43,45 +44,48 @@ void ejercicio2() {
     int numerosSpewart = 0;
     int numerosRango = 0;
     int longitud = 0, primerNumero = 0;
-    //poner print de topper, intruce...
 
+    printf("Topper, introduce el codigo de activación (4 digitos)?\n");
     scanf("%d", &numerosTopper);
-    //para saber longitud de un numero int
+    //utilizo esta formula para que me diga el numero de digitos que tiene el numero intoducido
     longitud = floor(1 + log10(abs(numerosTopper)));
     primerNumero = numerosTopper / 1000;
 
-    //solo se entra si los numeros de topper son correctos
     if (longitud == 4 && primerNumero != 0) {
+    //solo se entra si los numeros de topper son correctos
 
         //comprobamos numeros de harriet
-        //print de numeros harriet
+        printf("Harriet, introduce el codigo de activación (4 digitos)?\n");
         scanf("%d", &numerosHarriet);
         longitud = floor(1 + log10(abs(numerosHarriet)));
         primerNumero = numerosHarriet / 1000;
 
         if (longitud == 4 && primerNumero != 0) {
+            //solo se entra si los numeros de harriet son correctos
 
             //comprobamos numeros de spewart
-            //print de numeros spewart
+            printf("Spewart, introduce el codigo de activación (5 digitos)?\n");
             scanf("%d", &numerosSpewart);
             longitud = floor(1 + log10(abs(numerosSpewart)));
             primerNumero = numerosSpewart / 10000;
 
             if (longitud == 5 && primerNumero != 0) {
+                //solo se entra si los numeros de spewart son correctos
 
                 //comprobamos numeros de rango
-                //print de numeros rango
+                printf("Rango, introduce el codigo de activación (5 digitos)?\n");
                 scanf("%d", &numerosRango);
                 longitud = floor(1 + log10(abs(numerosRango)));
                 primerNumero = numerosRango / 10000;
 
                 if (longitud == 5 && primerNumero != 0) {
+                    //Solo entramos si todos los numeros estan correctos
 
-                    //Solo entramos si todos los numeros estan ok
                     int resultadoTotal = 0;
 
                     for (int i = 5, itr = 1; i >= 2; i--, itr = itr * 10) {
                         int digito = (numerosTopper / itr) % 10;
+                        // el modulo 10 me da el la cifra decimal del digito
                         int factor = pow(2, i);
                         factor = factor % 11;
                         int resultado = digito * factor;
@@ -90,6 +94,7 @@ void ejercicio2() {
 
                     for (int i = 9, itr = 1; i >= 6; i--, itr = itr * 10) {
                         int digito = (numerosHarriet / itr) % 10;
+                        // el modulo 10 me da el la cifra decimal del digito
                         int factor = pow(2, i);
                         factor = factor % 11;
                         int resultado = digito * factor;
@@ -99,7 +104,11 @@ void ejercicio2() {
                     resultadoTotal = resultadoTotal % 11;
 
                     resultadoTotal = 11 - resultadoTotal;
+                    // obtenemos el resultado final
 
+                    printf("\n");
+
+                    // miramos el resultado final y dependiendo de él, el primer digito es un numero o otro
                     if (resultadoTotal < 10) {
                         printf("Primer digito: %d\n", resultadoTotal);
                     } else if (resultadoTotal == 10) {
@@ -110,10 +119,9 @@ void ejercicio2() {
 
                     //segundo digito
 
-
-                    //Solo entramos si todos los numeros estan ok
                     resultadoTotal = 0;
 
+                    // hacemos lo mismo que hemos hecho arriba, cambiando la posicion de los numeros
                     for (int i = 4, itr = 1; i >= 0; i--, itr = itr * 10) {
                         int digito = (numerosSpewart / itr) % 10;
                         int factor = pow(2, i);
@@ -133,7 +141,9 @@ void ejercicio2() {
                     resultadoTotal = resultadoTotal % 11;
 
                     resultadoTotal = 11 - resultadoTotal;
+                    //obtenemos el resultado final
 
+                    // miramos el resultado final y dependiendo de él, el primer digito es un numero o otro
                     if (resultadoTotal < 10) {
                         printf("Segundo digito: %d\n", resultadoTotal);
                     } else if (resultadoTotal == 10) {
@@ -142,23 +152,25 @@ void ejercicio2() {
                         printf("Segundo digito: 0\n");
                     }
 
-                }
+                    printf("\n");
+                }// obtenemos el codigo de desactivacion de la bomba
 
 
             } else {
-                printf("Codigo No valido");
+                printf("Codigo No valido\n");
             }
 
 
         } else {
-            printf("Codigo No valido");
+            printf("Codigo No valido\n");
         }
 
 
     } else {
-        printf("Codigo No valido");
+        printf("Codigo No valido\n");
     }
 
+    printf("\n");
 }
 
 void ejercicio3() {
