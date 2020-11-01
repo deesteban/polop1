@@ -38,12 +38,126 @@ void ejercicio1() {
 
 void ejercicio2() {
 
+    int numerosTopper = 0;
+    int numerosHarriet = 0;
+    int numerosSpewart = 0;
+    int numerosRango = 0;
+    int longitud = 0, primerNumero = 0;
+    //poner print de topper, intruce...
 
-    int numero = 12345;
+    scanf("%d", &numerosTopper);
     //para saber longitud de un numero int
-    int longitud = floor(1 + log10(abs(numero)));
+    longitud = floor(1 + log10(abs(numerosTopper)));
+    primerNumero = numerosTopper / 1000;
 
-    printf("%d\n", longitud);
+    //solo se entra si los numeros de topper son correctos
+    if (longitud == 4 && primerNumero != 0) {
+
+        //comprobamos numeros de harriet
+        //print de numeros harriet
+        scanf("%d", &numerosHarriet);
+        longitud = floor(1 + log10(abs(numerosHarriet)));
+        primerNumero = numerosHarriet / 1000;
+
+        if (longitud == 4 && primerNumero != 0) {
+
+            //comprobamos numeros de spewart
+            //print de numeros spewart
+            scanf("%d", &numerosSpewart);
+            longitud = floor(1 + log10(abs(numerosSpewart)));
+            primerNumero = numerosSpewart / 10000;
+
+            if (longitud == 5 && primerNumero != 0) {
+
+                //comprobamos numeros de rango
+                //print de numeros rango
+                scanf("%d", &numerosRango);
+                longitud = floor(1 + log10(abs(numerosRango)));
+                primerNumero = numerosRango / 10000;
+
+                if (longitud == 5 && primerNumero != 0) {
+
+                    //Solo entramos si todos los numeros estan ok
+                    int resultadoTotal = 0;
+
+                    for (int i = 5, itr = 1; i >= 2; i--, itr = itr * 10) {
+                        int digito = (numerosTopper / itr) % 10;
+                        int factor = pow(2, i);
+                        factor = factor % 11;
+                        int resultado = digito * factor;
+                        resultadoTotal = resultadoTotal + resultado;
+                    }
+
+                    for (int i = 9, itr = 1; i >= 6; i--, itr = itr * 10) {
+                        int digito = (numerosHarriet / itr) % 10;
+                        int factor = pow(2, i);
+                        factor = factor % 11;
+                        int resultado = digito * factor;
+                        resultadoTotal = resultadoTotal + resultado;
+                    }
+
+                    resultadoTotal = resultadoTotal % 11;
+
+                    resultadoTotal = 11 - resultadoTotal;
+
+                    if (resultadoTotal < 10) {
+                        printf("Primer digito: %d\n", resultadoTotal);
+                    } else if (resultadoTotal == 10) {
+                        printf("Primer digito: 1\n");
+                    } else {
+                        printf("Primer digito: 0\n");
+                    }
+
+                    //segundo digito
+
+
+                    //Solo entramos si todos los numeros estan ok
+                    resultadoTotal = 0;
+
+                    for (int i = 4, itr = 1; i >= 0; i--, itr = itr * 10) {
+                        int digito = (numerosSpewart / itr) % 10;
+                        int factor = pow(2, i);
+                        factor = factor % 11;
+                        int resultado = digito * factor;
+                        resultadoTotal = resultadoTotal + resultado;
+                    }
+
+                    for (int i = 9, itr = 1; i >= 5; i--, itr = itr * 10) {
+                        int digito = (numerosRango / itr) % 10;
+                        int factor = pow(2, i);
+                        factor = factor % 11;
+                        int resultado = digito * factor;
+                        resultadoTotal = resultadoTotal + resultado;
+                    }
+
+                    resultadoTotal = resultadoTotal % 11;
+
+                    resultadoTotal = 11 - resultadoTotal;
+
+                    if (resultadoTotal < 10) {
+                        printf("Segundo digito: %d\n", resultadoTotal);
+                    } else if (resultadoTotal == 10) {
+                        printf("Segundo digito: 1\n");
+                    } else {
+                        printf("Segudno digito: 0\n");
+                    }
+
+                }
+
+
+            } else {
+                printf("Codigo No valido");
+            }
+
+
+        } else {
+            printf("Codigo No valido");
+        }
+
+
+    } else {
+        printf("Codigo No valido");
+    }
 
 }
 
