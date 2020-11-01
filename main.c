@@ -139,7 +139,7 @@ void ejercicio2() {
                     } else if (resultadoTotal == 10) {
                         printf("Segundo digito: 1\n");
                     } else {
-                        printf("Segudno digito: 0\n");
+                        printf("Segundo digito: 0\n");
                     }
 
                 }
