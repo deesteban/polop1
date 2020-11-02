@@ -6,22 +6,24 @@
 
 void ejercicio1() {
 
-    double radio = 10.0;
+    float radio = 10.0;
     int porcentaje = 10;
+    float res;
+    float res2;
     printf("\n");
 
 
     for (int i = 2 * radio; i >= 0; i--) {
         for (int j = 0; j <= 1.5 * radio; j++) {
 
-            double res = pow((j - radio), 2.0) + pow((i - radio), 2.0);
+            res = pow((j - radio), 2.0) + pow((i - radio), 2.0);
             if (res > (pow(radio, 2.0) - porcentaje) && res < (pow(radio, 2.0) + porcentaje)) {
                 printf("* ");
             } else {
                 printf(" ");
             }
 
-            double res2 = pow((j - 2.0 * radio), 2.0) + pow((i - radio), 2.0);
+            res2 = pow((j - 2.0 * radio), 2.0) + pow((i - radio), 2.0);
             if (res2 > (pow(radio, 2.0) - porcentaje) && res2 < (pow(radio, 2.0) + porcentaje)) {
                 printf("* ");
             } else {
@@ -44,6 +46,9 @@ void ejercicio2() {
     int numerosSpewart = 0;
     int numerosRango = 0;
     int longitud = 0, primerNumero = 0;
+    int factor;
+    int resultado;
+    int digito;
 
     printf("Topper, introduce el codigo de activación (4 digitos)?\n");
     scanf("%d", &numerosTopper);
@@ -83,21 +88,22 @@ void ejercicio2() {
 
                     int resultadoTotal = 0;
 
+
                     for (int i = 5, itr = 1; i >= 2; i--, itr = itr * 10) {
-                        int digito = (numerosTopper / itr) % 10;
+                        digito = (numerosTopper / itr) % 10;
                         // el modulo 10 me da el la cifra decimal del digito
-                        int factor = pow(2, i);
+                        factor = pow(2, i);
                         factor = factor % 11;
-                        int resultado = digito * factor;
+                        resultado = digito * factor;
                         resultadoTotal = resultadoTotal + resultado;
                     }
 
                     for (int i = 9, itr = 1; i >= 6; i--, itr = itr * 10) {
-                        int digito = (numerosHarriet / itr) % 10;
+                        digito = (numerosHarriet / itr) % 10;
                         // el modulo 10 me da el la cifra decimal del digito
-                        int factor = pow(2, i);
+                        factor = pow(2, i);
                         factor = factor % 11;
-                        int resultado = digito * factor;
+                        resultado = digito * factor;
                         resultadoTotal = resultadoTotal + resultado;
                     }
 
@@ -123,18 +129,18 @@ void ejercicio2() {
 
                     // hacemos lo mismo que hemos hecho arriba, cambiando la posicion de los numeros
                     for (int i = 4, itr = 1; i >= 0; i--, itr = itr * 10) {
-                        int digito = (numerosSpewart / itr) % 10;
-                        int factor = pow(2, i);
+                        digito = (numerosSpewart / itr) % 10;
+                        factor = pow(2, i);
                         factor = factor % 11;
-                        int resultado = digito * factor;
+                        resultado = digito * factor;
                         resultadoTotal = resultadoTotal + resultado;
                     }
 
                     for (int i = 9, itr = 1; i >= 5; i--, itr = itr * 10) {
-                        int digito = (numerosRango / itr) % 10;
-                        int factor = pow(2, i);
+                        digito = (numerosRango / itr) % 10;
+                        factor = pow(2, i);
                         factor = factor % 11;
-                        int resultado = digito * factor;
+                        resultado = digito * factor;
                         resultadoTotal = resultadoTotal + resultado;
                     }
 
