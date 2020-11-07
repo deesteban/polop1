@@ -97,7 +97,7 @@ void ejercicio2() {
                             factor = factor % 11;
                             resultado = digito * factor;
                             resultadoTotal = resultadoTotal + resultado;
-                        } else(i<5);{
+                        } else if(i<=4){
                             itr=1;
                             digito = (numerosTopper / itr) % 10;
                             // el modulo 10 me da el la cifra decimal del digito
@@ -132,15 +132,15 @@ void ejercicio2() {
 
                     // hacemos lo mismo que hemos hecho arriba, cambiando la posicion de los numeros
                     for (int i = 9; i >= 0; i--) {
-                        if (i<5) {
-                            digito = (numerosSpewart / itr) % 10;
+                        if (i>=5) {
+                            digito = (numerosRango / itr) % 10;
                             factor = pow(2, i);
                             factor = factor % 11;
                             resultado = digito * factor;
                             resultadoTotal = resultadoTotal + resultado;
-                        } else(i>=5);{
+                        } else if(i<=4){
                             itr=1;
-                            digito = (numerosRango / itr) % 10;
+                            digito = (numerosSpewart / itr) % 10;
                             factor = pow(2, i);
                             factor = factor % 11;
                             resultado = digito * factor;
