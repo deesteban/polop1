@@ -38,6 +38,7 @@ void ejercicio1() {
 
 void ejercicio2() {
 
+    //variables necesarias para el funcionamiento del ejercicio 2
     int numerosTopper = 0;
     int numerosHarriet = 0;
     int numerosSpewart = 0;
@@ -87,6 +88,7 @@ void ejercicio2() {
                     //Solo entramos si todos los numeros estan correctos
 
                     resultadoTotal = 0;
+                    //la variable itr nos sirve para ir separando los digitos.
                     itr = 1;
 
                     for (int i = 9; i >= 2; i--) {
@@ -96,6 +98,7 @@ void ejercicio2() {
                             factor = pow(2, i);
                             factor = factor % 11;
                             resultado = digito * factor;
+                            //almacenamos el resultado en una variable que nos cuente globalmente.
                             resultadoTotal = resultadoTotal + resultado;
                         } else if (i <= 5) {
                             if (i == 5) itr = 1;
@@ -185,21 +188,32 @@ void ejercicio2() {
 }
 
 void ejercicio3() {
+    //NOTA: En el enunciado el origen de coordenadas se describe como (0,1,1) y se ha mantenido ese orden de cara al usuario 'Toad'
+    // Pero internamente se trabaja con el origen (0,0,0) ya que los arrays empiezan en ese indice, para solventar esto se hacen varios ajustes a las variables iteradoras.
 
+    //variables que necesitamos en el ejercicio
     int pasillos = 0, filas = 0, huecos = 0, opcion = 0, pasilloDestino = 0, filaDestino = 0, huecoDestino = 0;
+    //va a representar a nuestro robot, en sus coordenadas {pasillo, fila, hueco}
     int robot[] = {0, 0, 0};
+    //variable booleana para los checks de scanf
     int todoOk = 0;
+    //variables para optimizar bucles for
     int aAlmacenar = 0;
     int aRecoger = 0;
+
+
+    //preparacion del ejercicio en bucle para solventar errores en el input.
     do {
         printf("Numero de pasillos? ");
         scanf("%d", &pasillos);
+        //solo avanza si es correcto, de lo contrario salta printf de error.
         if (pasillos > 0) {
             printf("\nFilas de cada pasillo? ");
             scanf("%d", &filas);
             if (filas > 0) {
                 printf("\nNumero de huecos de cada fila? ");
                 scanf("%d", &huecos);
+                //si todo sale ok marcamos el ok y puede salir del bucle.
                 if (huecos > 0) todoOk = 1;
                 else printf("El numero de pasillos debe de ser un numero positivo mayor que 0");
             } else printf("El numero de pasillos debe de ser un numero positivo mayor que 0");
@@ -207,8 +221,10 @@ void ejercicio3() {
 
     } while (todoOk != 1);
 
+    //creamos el almacen virtualmente con una matriz 3D, representando los pasillos, filas y huecos para almacenar si existe o no mercancia en ese lugar.
     int contenedor[pasillos + 2][filas][huecos];
 
+    //bucle principal - menu principal del ejercicio 3.
     do {
 
         printf("Operacion a realizar\n[1] Recoger\n[2] Almacenar\n[3] Salir\nOpcion? ");
@@ -216,12 +232,13 @@ void ejercicio3() {
         scanf("%d", &opcion);
 
         if (opcion == 1) {
-
+            //recuperamos variable para checks en los do-while
             todoOk = 0;
 
             printf("\nDonde coger?");
 
             do {
+                //seguimos mismo esquema que en los anteriores do-while, solo avanza si se cumple.
                 printf("Pasillo? ");
                 scanf("%d", &pasilloDestino);
                 if (pasilloDestino > 0 && pasilloDestino <= pasillos) {
@@ -239,19 +256,20 @@ void ejercicio3() {
 
             } while (todoOk != 1);
 
-
+            //comprobamos que exista una mercancia en el lugar seleccionado.
             if (contenedor[pasilloDestino][filaDestino][huecoDestino] == 1) {
 
                 aRecoger = 1;
 
             } else {
+                //de lo contrario mostramos error.
                 printf("Posicion no valida, no existe mercancia almacenada en esa posicion.\n");
             }
 
         }
 
         if (opcion == 2) {
-
+            //seguimos mismo esquema que con la opcion1 pero preguntando donde almacenar.
             todoOk = 0;
 
             printf("\nDonde almacenar?");
@@ -274,7 +292,7 @@ void ejercicio3() {
 
             } while (todoOk != 1);
 
-
+            //miramos que no exista una mercancia en el sitio que hemos seleccionado.
             if (contenedor[pasilloDestino][filaDestino][huecoDestino] != 1) {
 
                 aAlmacenar = 1;
@@ -285,12 +303,13 @@ void ejercicio3() {
 
         }
 
-
+        //print general para ambos casos.
         printf("\nPosicion Robot - pasillo: %d, fila: %d, hueco: %d\n", robot[0], robot[1] + 1, robot[2] + 1);
         printf("mov\t pasillo\t\t\tfila\t\t\thueco\n===============================================\n");
+        //posicion actual del robot, sin accion.
         printf("-\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
 
-
+        //el robot sale de el hueco donde estuviese y vuelve a la posicion (x,x,1)
         if (robot[2] != 0) {
             for (int i = robot[2]; i > 0; i--) {
                 robot[2]--;
@@ -298,6 +317,7 @@ void ejercicio3() {
             }
         }
 
+        //el robot sale de la fila donde estuviese y vuelve a la posicion (x,1,1)
         if (robot[1] != 0) {
             for (int i = robot[1]; i > 0; i--) {
                 robot[1]--;
@@ -305,12 +325,12 @@ void ejercicio3() {
             }
         }
 
-
+        //miramos si hay que almacenar o guardar y solo ejecutamos la parte correspondiente para no tener que repetir bucles.
 
         if (aAlmacenar == 1) {
 
             //Ir al punto 0,1,1 a por mercancia
-
+            //desplazamiento horizontal 'b' para buscar la mercancia al punto de recogida.
             if (robot[0] != 0) {
                 for (int i = robot[0]; i > 0; i--) {
                     robot[0]--;
@@ -322,7 +342,9 @@ void ejercicio3() {
 
         }
 
+        //accion generica para ambos casos de recoger y de guardar. Nos movemos horizontalmente buscando nuestro objetivo.
         if (robot[0] != pasilloDestino) {
+            //numero maximo de veces que nos tenemos que mover. Usamos v.absoluto para cubrir los casos de movimiento horizontal izquierdo y derecho.
             int maxIteraciones = abs(robot[0] - pasilloDestino);
             for (int i = 0; i < maxIteraciones; i++) {
                 if (robot[0] >= pasilloDestino) {
@@ -335,13 +357,14 @@ void ejercicio3() {
             }
         }
 
+        //una vez estamos en el pasillo adecuado, entramos en su fila.
         if (robot[1] != filaDestino) {
             for (int i = 0; i < filaDestino; i++) {
                 robot[1]++;
                 printf("U\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
             }
         }
-
+        //una vez en la fila, nos desplazamos en los huecos para seleccionar el adecuado.
         if (robot[2] != huecoDestino) {
             for (int i = 0; i < huecoDestino; i++) {
                 robot[2]++;
@@ -349,17 +372,19 @@ void ejercicio3() {
             }
         }
 
+        //si almacenamos, cambiamos el inventario a '1' y ponemos la variable aAlmacenar a '0' para la siguiente orden.
         if (aAlmacenar == 1) {
             printf("Almacenado de material\n");
             contenedor[pasilloDestino][filaDestino][huecoDestino] = 1;
             aAlmacenar = 0;
         }
 
+        //si recogemos, hacemos la accion analoga a la anterior pero ademas nos desplazamos al punto (pasillos+1,1,1) para entregar la mercancia.
         if (aRecoger == 1) {
             printf("Recogida de material\n");
             contenedor[pasilloDestino][filaDestino][huecoDestino] = 0;
             aRecoger = 0;
-
+            //salimos del hueco al punto (x,x,1)
             if (robot[2] != 0) {
                 for (int i = robot[2]; i > 0; i--) {
                     robot[2]--;
@@ -367,14 +392,15 @@ void ejercicio3() {
                 }
             }
 
+            //salimos de la fila al punto (x,1,1)
             if (robot[1] != 0) {
                 for (int i = robot[1]; i > 0; i--) {
                     robot[1]--;
                     printf("D\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
                 }
             }
-
-            if (robot[0] != 0) {
+            //nos desplazamos horizontalmente 'F' hasta el ultimo pasillo y entregamos la mercancia.
+            if (robot[0] != pasillos + 1) {
                 for (int i = robot[0]; i < pasillos + 1; i++) {
                     robot[0]++;
                     printf("F\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
