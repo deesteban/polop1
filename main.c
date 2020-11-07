@@ -213,7 +213,7 @@ void ejercicio3() {
             if (filas > 0) {
                 printf("\nNumero de huecos de cada fila? ");
                 scanf("%d", &huecos);
-                //si todo sale ok marcamos el ok y puede salir del bucle.
+                //si sale ok marcamos el to-do ok y puede salir del bucle.
                 if (huecos > 0) todoOk = 1;
                 else printf("El numero de pasillos debe de ser un numero positivo mayor que 0");
             } else printf("El numero de pasillos debe de ser un numero positivo mayor que 0");
