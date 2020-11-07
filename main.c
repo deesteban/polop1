@@ -6,12 +6,10 @@
 
 void ejercicio1() {
 
-    float radio = 10.0;
-    int porcentaje = 10;
+    int radio = 10;
+    float porcentaje = 10;
     float res;
     float res2;
-    printf("\n");
-
 
     for (int i = 2 * radio; i >= 0; i--) {
         for (int j = 0; j <= 1.5 * radio; j++) {
@@ -30,7 +28,6 @@ void ejercicio1() {
                 printf(" ");
             }
 
-
         }
         printf("\n");
     }
@@ -45,10 +42,13 @@ void ejercicio2() {
     int numerosHarriet = 0;
     int numerosSpewart = 0;
     int numerosRango = 0;
-    int longitud = 0, primerNumero = 0;
+    int longitud = 0;
+    int primerNumero = 0;
     int factor;
     int resultado;
     int digito;
+    int resultadoTotal;
+    int itr;
 
     printf("Topper, introduce el codigo de activación (4 digitos)?\n");
     scanf("%d", &numerosTopper);
@@ -86,25 +86,27 @@ void ejercicio2() {
                 if (longitud == 5 && primerNumero != 0) {
                     //Solo entramos si todos los numeros estan correctos
 
-                    int resultadoTotal = 0;
+                    resultadoTotal = 0;
+                    itr=1;
 
-
-                    for (int i = 5, itr = 1; i >= 2; i--, itr = itr * 10) {
-                        digito = (numerosTopper / itr) % 10;
-                        // el modulo 10 me da el la cifra decimal del digito
-                        factor = pow(2, i);
-                        factor = factor % 11;
-                        resultado = digito * factor;
-                        resultadoTotal = resultadoTotal + resultado;
-                    }
-
-                    for (int i = 9, itr = 1; i >= 6; i--, itr = itr * 10) {
-                        digito = (numerosHarriet / itr) % 10;
-                        // el modulo 10 me da el la cifra decimal del digito
-                        factor = pow(2, i);
-                        factor = factor % 11;
-                        resultado = digito * factor;
-                        resultadoTotal = resultadoTotal + resultado;
+                    for (int i = 9; i>= 2; i--){
+                        if (i>=5) {
+                            digito = (numerosHarriet / itr) % 10;
+                            // el modulo 10 me da la cifra decimal del digito
+                            factor = pow(2, i);
+                            factor = factor % 11;
+                            resultado = digito * factor;
+                            resultadoTotal = resultadoTotal + resultado;
+                        } else(i<5);{
+                            itr=1;
+                            digito = (numerosTopper / itr) % 10;
+                            // el modulo 10 me da el la cifra decimal del digito
+                            factor = pow(2, i);
+                            factor = factor % 11;
+                            resultado = digito * factor;
+                            resultadoTotal = resultadoTotal + resultado;
+                        }
+                        itr=itr*10;
                     }
 
                     resultadoTotal = resultadoTotal % 11;
@@ -114,7 +116,7 @@ void ejercicio2() {
 
                     printf("\n");
 
-                    // miramos el resultado final y dependiendo de él, el primer digito es un numero o otro
+                    // miramos el resultado final y dependiendo de él, el primer digito es un numero u otro
                     if (resultadoTotal < 10) {
                         printf("Primer digito: %d\n", resultadoTotal);
                     } else if (resultadoTotal == 10) {
@@ -126,22 +128,25 @@ void ejercicio2() {
                     //segundo digito
 
                     resultadoTotal = 0;
+                    itr=1;
 
                     // hacemos lo mismo que hemos hecho arriba, cambiando la posicion de los numeros
-                    for (int i = 4, itr = 1; i >= 0; i--, itr = itr * 10) {
-                        digito = (numerosSpewart / itr) % 10;
-                        factor = pow(2, i);
-                        factor = factor % 11;
-                        resultado = digito * factor;
-                        resultadoTotal = resultadoTotal + resultado;
-                    }
-
-                    for (int i = 9, itr = 1; i >= 5; i--, itr = itr * 10) {
-                        digito = (numerosRango / itr) % 10;
-                        factor = pow(2, i);
-                        factor = factor % 11;
-                        resultado = digito * factor;
-                        resultadoTotal = resultadoTotal + resultado;
+                    for (int i = 9; i >= 0; i--) {
+                        if (i<5) {
+                            digito = (numerosSpewart / itr) % 10;
+                            factor = pow(2, i);
+                            factor = factor % 11;
+                            resultado = digito * factor;
+                            resultadoTotal = resultadoTotal + resultado;
+                        } else(i>=5);{
+                            itr=1;
+                            digito = (numerosRango / itr) % 10;
+                            factor = pow(2, i);
+                            factor = factor % 11;
+                            resultado = digito * factor;
+                            resultadoTotal = resultadoTotal + resultado;
+                        }
+                        itr=itr*10;
                     }
 
                     resultadoTotal = resultadoTotal % 11;
@@ -180,7 +185,8 @@ void ejercicio2() {
 }
 
 void ejercicio3() {
-    printf("Ej3");
+
+
 
 }
 
@@ -201,8 +207,6 @@ int main() {
             printf("ERROR: Opcion introducida no valida\n\n");
         }
 
-
-
         //se selecciona el ejercicio correcto
         if (resultado == 1) ejercicio1();
         if (resultado == 2) ejercicio2();
@@ -210,7 +214,6 @@ int main() {
         if (resultado == 4) {
             //se finaliza el programa
         }
-
 
     } while (resultado != 4);
 
