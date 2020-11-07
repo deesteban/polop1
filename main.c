@@ -189,6 +189,8 @@ void ejercicio3() {
     int pasillos = 0, filas = 0, huecos = 0, opcion = 0, pasilloDestino = 0, filaDestino = 0, huecoDestino = 0;
     int robot[] = {0, 0, 0};
     int todoOk = 0;
+    int aAlmacenar = 0;
+    int aRecoger = 0;
     do {
         printf("Numero de pasillos? ");
         scanf("%d", &pasillos);
@@ -212,6 +214,41 @@ void ejercicio3() {
         printf("Operacion a realizar\n[1] Recoger\n[2] Almacenar\n[3] Salir\nOpcion? ");
 
         scanf("%d", &opcion);
+
+        if (opcion == 1) {
+
+            todoOk = 0;
+
+            printf("\nDonde coger?");
+
+            do {
+                printf("Pasillo? ");
+                scanf("%d", &pasilloDestino);
+                if (pasilloDestino > 0 && pasilloDestino <= pasillos) {
+                    printf("\nFila?");
+                    scanf("%d", &filaDestino);
+                    filaDestino -= 1;
+                    if (filaDestino > 0 && filaDestino <= filas) {
+                        printf("\nHueco?");
+                        scanf("%d", &huecoDestino);
+                        huecoDestino -= 1;
+                        if (huecoDestino > 0 && huecoDestino <= huecos) todoOk = 1;
+                        else printf("Hueco no valido");
+                    } else printf("Fila no valida");
+                } else printf("Pasillo no valido");
+
+            } while (todoOk != 1);
+
+
+            if (contenedor[pasilloDestino][filaDestino][huecoDestino] == 1) {
+
+                aRecoger = 1;
+
+            } else {
+                printf("Posicion no valida, no existe mercancia almacenada en esa posicion.\n");
+            }
+
+        }
 
         if (opcion == 2) {
 
@@ -240,73 +277,114 @@ void ejercicio3() {
 
             if (contenedor[pasilloDestino][filaDestino][huecoDestino] != 1) {
 
-                printf("\nPosicion Robot - pasillo: %d, fila: %d, hueco: %d\n", robot[0], robot[1] + 1, robot[2] + 1);
-                printf("mov\t pasillo\t\t\tfila\t\t\thueco\n===============================================\n");
-                printf("-\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
-                if (robot[2] != 0) {
-                    for (int i = robot[2]; i > 0; i--) {
-                        robot[2]--;
-                        printf("L\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
-                    }
-                }
-
-                if (robot[1] != 0) {
-                    for (int i = robot[1]; i > 0; i--) {
-                        robot[1]--;
-                        printf("D\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
-                    }
-                }
-
-                // 7 0 0
-
-                // 4 0 1
-
-                //
-
-                if (robot[0] != 0) {
-                    for (int i = robot[0]; i > 0; i--) {
-                        robot[0]--;
-                        printf("B\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
-                    }
-                }
-
-                printf("Recogida de material\n");
-
-                if (robot[0] != pasilloDestino) {
-                    int maxIteraciones = abs(robot[0] - pasilloDestino);
-                    for (int i = 0; i < maxIteraciones; i++) {
-                        if (robot[0] >= pasilloDestino) {
-                            robot[0]--;
-                            printf("B\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
-                        } else {
-                            robot[0]++;
-                            printf("F\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
-                        }
-                    }
-                }
-
-                if (robot[1] != filaDestino) {
-                    for (int i = 0; i < filaDestino; i++) {
-                        robot[1]++;
-                        printf("U\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
-                    }
-                }
-
-                if (robot[2] != huecoDestino) {
-                    for (int i = 0; i < huecoDestino; i++) {
-                        robot[2]++;
-                        printf("R\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
-                    }
-                }
-
-                printf("Almacenado de material\n");
-                contenedor[pasilloDestino][filaDestino][huecoDestino] = 1;
+                aAlmacenar = 1;
 
             } else {
                 printf("Posicion no valida, ya existe mercancia almacenada en la posicion indicada.\n");
             }
 
         }
+
+
+        printf("\nPosicion Robot - pasillo: %d, fila: %d, hueco: %d\n", robot[0], robot[1] + 1, robot[2] + 1);
+        printf("mov\t pasillo\t\t\tfila\t\t\thueco\n===============================================\n");
+        printf("-\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+
+
+        if (robot[2] != 0) {
+            for (int i = robot[2]; i > 0; i--) {
+                robot[2]--;
+                printf("L\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+            }
+        }
+
+        if (robot[1] != 0) {
+            for (int i = robot[1]; i > 0; i--) {
+                robot[1]--;
+                printf("D\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+            }
+        }
+
+
+
+        if (aAlmacenar == 1) {
+
+            //Ir al punto 0,1,1 a por mercancia
+
+            if (robot[0] != 0) {
+                for (int i = robot[0]; i > 0; i--) {
+                    robot[0]--;
+                    printf("B\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+                }
+            }
+
+            printf("Recogida de material\n");
+
+        }
+
+        if (robot[0] != pasilloDestino) {
+            int maxIteraciones = abs(robot[0] - pasilloDestino);
+            for (int i = 0; i < maxIteraciones; i++) {
+                if (robot[0] >= pasilloDestino) {
+                    robot[0]--;
+                    printf("B\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+                } else {
+                    robot[0]++;
+                    printf("F\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+                }
+            }
+        }
+
+        if (robot[1] != filaDestino) {
+            for (int i = 0; i < filaDestino; i++) {
+                robot[1]++;
+                printf("U\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+            }
+        }
+
+        if (robot[2] != huecoDestino) {
+            for (int i = 0; i < huecoDestino; i++) {
+                robot[2]++;
+                printf("R\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+            }
+        }
+
+        if (aAlmacenar == 1) {
+            printf("Almacenado de material\n");
+            contenedor[pasilloDestino][filaDestino][huecoDestino] = 1;
+            aAlmacenar = 0;
+        }
+
+        if (aRecoger == 1) {
+            printf("Recogida de material\n");
+            contenedor[pasilloDestino][filaDestino][huecoDestino] = 0;
+            aRecoger = 0;
+
+            if (robot[2] != 0) {
+                for (int i = robot[2]; i > 0; i--) {
+                    robot[2]--;
+                    printf("L\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+                }
+            }
+
+            if (robot[1] != 0) {
+                for (int i = robot[1]; i > 0; i--) {
+                    robot[1]--;
+                    printf("D\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+                }
+            }
+
+            if (robot[0] != 0) {
+                for (int i = robot[0]; i < pasillos + 1; i++) {
+                    robot[0]++;
+                    printf("F\t\t%d\t\t\t\t%d\t\t\t\t%d\t\n", robot[0], robot[1] + 1, robot[2] + 1);
+                }
+            }
+
+            printf("Entrega de material\n");
+
+        }
+
 
     } while (opcion != 3);
 
