@@ -221,9 +221,6 @@ void ejercicio3() {
 
     } while (todoOk != 1);
 
-    //creamos el almacen virtualmente con una matriz 3D, representando los pasillos, filas y huecos para almacenar si existe o no mercancia en ese lugar.
-    int contenedor[pasillos + 2][filas][huecos];
-
     //bucle principal - menu principal del ejercicio 3.
     do {
 
@@ -256,15 +253,8 @@ void ejercicio3() {
 
             } while (todoOk != 1);
 
-            //comprobamos que exista una mercancia en el lugar seleccionado.
-            if (contenedor[pasilloDestino][filaDestino][huecoDestino] == 1) {
-
-                aRecoger = 1;
-
-            } else {
-                //de lo contrario mostramos error.
-                printf("Posicion no valida, no existe mercancia almacenada en esa posicion.\n");
-            }
+            aRecoger = 1;
+            //a
 
         }
 
@@ -292,14 +282,8 @@ void ejercicio3() {
 
             } while (todoOk != 1);
 
-            //miramos que no exista una mercancia en el sitio que hemos seleccionado.
-            if (contenedor[pasilloDestino][filaDestino][huecoDestino] != 1) {
+            aAlmacenar = 1;
 
-                aAlmacenar = 1;
-
-            } else {
-                printf("Posicion no valida, ya existe mercancia almacenada en la posicion indicada.\n");
-            }
 
         }
 
@@ -375,14 +359,12 @@ void ejercicio3() {
         //si almacenamos, cambiamos el inventario a '1' y ponemos la variable aAlmacenar a '0' para la siguiente orden.
         if (aAlmacenar == 1) {
             printf("Almacenado de material\n");
-            contenedor[pasilloDestino][filaDestino][huecoDestino] = 1;
             aAlmacenar = 0;
         }
 
         //si recogemos, hacemos la accion analoga a la anterior pero ademas nos desplazamos al punto (pasillos+1,1,1) para entregar la mercancia.
         if (aRecoger == 1) {
             printf("Recogida de material\n");
-            contenedor[pasilloDestino][filaDestino][huecoDestino] = 0;
             aRecoger = 0;
             //salimos del hueco al punto (x,x,1)
             if (robot[2] != 0) {
