@@ -1,5 +1,5 @@
 // Galiñanes Martinez, Pablo (hace entrega de la practica en Canvas)
-// Polo Salinas, Juan.
+// Polo Salinas, Juan
 #include <stdio.h>
 #include <ctype.h>
 
