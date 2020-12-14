@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+//usamos math.h para la insercion ordenada y solo para calcular el minimo entre dos numeros (fmin)
 #include <math.h>
 
 
