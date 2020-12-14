@@ -3,14 +3,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
+
 
 #define MAX_CAD 100
 #define CAPACIDAD_ARMARIO 3
-//usamos esta funcion para calcular el minimo para la insercion ordenada. (buscada de google: https://stackoverflow.com/questions/3437404/min-and-max-in-c)
-#define min(a, b) \
-   ({ __typeof__ (a) _a = (a); \
-       __typeof__ (b) _b = (b); \
-     _a < _b ? _a : _b; })
+
 
 // Si se hace uso de constantes deben definirse aqui
 
@@ -163,7 +161,7 @@ int insertarParte(struct disfraz armario[], int capacidadMaxima, char nombreDisf
                     }
 
                     //si el hueco tiene un item con nombre menor seguimos, si es mayor quiere decir que se tiene que desplazar (insercion ordenada)
-                    int minLets = min(strlen(armario[i].nombre),
+                    int minLets = fmin(strlen(armario[i].nombre),
                                       strlen(nombreDisfraz)), digitsToCompareA = 0, digitsToCompareB = 0;
                     //hacemos la suma individual del valor ASCII de cada digito de los nombres hasta el final de uno de los nombres.
                     for (int j = 0; j < minLets; ++j) {
